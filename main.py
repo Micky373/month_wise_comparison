@@ -36,7 +36,7 @@ comprehensive_reports = st.file_uploader(
 )
 
 # Create a radio button for navigation
-needed_affiliate = st.selectbox("Navigate to:", sorted([
+needed_affiliate = st.selectbox("Choose Affiliate:", sorted([
     '',
     'What If Holdings',
     'Pure Ads Digital',
