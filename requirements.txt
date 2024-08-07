@@ -3,3 +3,4 @@ pandas
 numpy
 openpyxl
 OleFileIO_PL
+swifter
