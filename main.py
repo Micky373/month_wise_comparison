@@ -36,28 +36,21 @@ comprehensive_reports = st.file_uploader(
 )
 
 # Create a radio button for navigation
-needed_affiliate = st.selectbox("Navigate to:", [
-    '',
-    'All Inbox(Jason Jacobs)', 
-    'Flatiron Media', 
-    'Flex Marketing Group, LLC', 
+needed_affiliate = st.selectbox("Navigate to:", sorted([
+    'What If Holdings',
+    'Pure Ads Digital',
+    'Tiburon Media',
+    'Host&Post offer name (Datafeed - Edemographic 2)',
     'Fluent',
-    'Interest Media', 
-    'Master Affiliate CD1', 
-    'Master Affiliate CD3', 
-    'Pure Ads Digital', 
-    'Push Crew', 
-    'Pushnami LLC', 
-    'Revenue from JS Midpath for Website1', 
-    'SBG Group', 
-    'Survey Club', 
-    'Tiburon Media', 
-    'Union Street Enterprises', 
-    'Unique Rewards', 
-    'Webclients FrontStreetMarktng', 
-    'What If Holdings', 
-    'Zeeto Media'
-])
+    'Master Affiliate CD1',
+    'All Inbox(Jason Jacobs)',
+    'Webclients FrontStreetMarktng',
+    'Master Affiliate CD3',
+    'SBG Group',
+    'Zeeto Media',
+    'Flex Marketing Group, LLC',
+    'EngageIQ Test Account 1'
+]))
 
 
 if st.button('Generate Report'):
@@ -77,14 +70,23 @@ if st.button('Generate Report'):
                         temp_dfs = utils.generate_report(file)
 
                         # Getting the monthly data for February
-                        feb_dfs = {}
+                        data_frames = {}
                         for sheet_name,sheet_df in temp_dfs.items():
-                            feb_dfs[sheet_name] = sheet_df
+                            data_frames[sheet_name] = sheet_df
 
-                        month_data_frames.append(feb_dfs)
+                        month_data_frames.append(data_frames)
 
                     # Let us get the comparision dfs
-                    final_df = pd.concat([month_df[needed_affiliate] for month_df in month_data_frames],axis=0)
+                    final_data_frames = []
+                    count = 0
+                    for xls in month_data_frames:
+                        temp_xls = {}
+                        for sheet_name,sheet_df in xls.items():
+                            temp_xls[sheet_name] = sheet_df
+
+                        final_data_frames.append(temp_xls)
+
+                    final_df = pd.concat([month_df[needed_affiliate] for month_df in final_data_frames],axis=0)
                     final_df.drop(
                         columns = 'Date',
                         inplace = True
