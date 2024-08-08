@@ -412,32 +412,7 @@ def generate_report(input_data_path):
     # Step 3: Create a new dictionary with sorted keys
     sorted_dict = {key: final_report_df[key] for key in sorted_keys}
 
-    # Print the sorted dictionary
-    # print(sorted_dict)
-
-    # excel_path = save_path
-
     final_report_df = sorted_dict
-
-    # # Create an Excel file with multiple sheets
-    # with pd.ExcelWriter(excel_path) as writer:
-
-    #     for name,df in final_report_df.items():
-
-    #         df.to_excel(writer, sheet_name=name[:31], index=False)
-
-    # # Save the DataFrame to an Excel file
-    # excel_path = excel_path
-
-    # Load the Excel file with openpyxl
-    # workbook = openpyxl.load_workbook(excel_path)
-
-    # # Apply formatting to all sheets
-    # for sheet_name in workbook.sheetnames:
-    #     sheet = workbook[sheet_name]
-    #     format_sheet(sheet)
-
-    # workbook.save(excel_path)
 
     return final_report_df
 
